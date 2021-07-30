@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" href="bootstrap.bundle.min.js / bootstrap.bundle.js" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<html>
+<title>To do List</title>
+<head>
+<style>
+/* your css code goes here */
+body {
+ background-image: url("https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80");
+ background-positon: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ position: relative;
+}
+div {
+  text-indent: 50px;
+}
+div.ex1{
+    padding-left: 25%;
+    padding-right: 25%;
+    padding-top: 25px;
+}
+div.input-group{
+    padding-left: 25%;
+    padding-right: 25%;
+    padding-top: 25px;
+}
+</style>
+<div class="d-block p-2 bg-dark text-white">
+    <h1 class="text-center ">TO DO LIST</h1>
+    </div>
+</head>
+<div class="ex1">
+    <input type="text" id="tasks" class="form-control" placeholder="Enter the task"></input>
+    <br>
+    <button type="button" class="btn btn-primary"  title="Adder" onClick="add()">Add it to the list</button>
+</div>
+<div>
+    <br>
+<div class="input-group mb-3">
+  <input type="number" id="delinput" class="form-control" placeholder="Enter the task number" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-danger" type="button" title="The entered number will get deleted" onClick="del()">Remove</button>
+  </div>
+</div>
+<ol><button type="button" class="btn btn-danger" onClick="exit()" title="This will reset the list">Reset</button></ol>
+</div>
+<hr>
+<div>
+    <h4 id="task1">Your tasks will be shown here!!</h4>
+</div>
+<ol id="task"></ol>
+</div>
+</body>
+
+</html>
+<script>
+var List=[];
+function add(){
+  if(document.getElementById("tasks").value!==""){
+List.push(document.getElementById("tasks").value);
+  }
+document.getElementById("tasks").value="";
+if(List.length===0){
+        document.getElementById("task1").innerHTML="Nothing to show!! Try adding some task...";
+document.getElementById("task").innerHTML=("")}
+else{
+    document.getElementById("task1").innerHTML="Your tasks are as follows:";
+    document.getElementById("task").innerHTML="";
+    var ul = document.getElementById("task");
+    for(var i=0;i<List.length;i++){
+        var li = document.createElement("li");
+        li.textContent=List[i];
+        ul.appendChild(li);
+    }
+}
+}
+function show(){
+    
+}
+function del(){
+if(List.length===0){
+document.getElementById("task1").innerHTML="Nothing to delete!!";}
+else{
+    var a = (document.getElementById("delinput").value);
+    a=a-1;
+List.splice(a,1);
+document.getElementById("delinput").value="";
+if(List.length===0){
+        document.getElementById("task1").innerHTML="Nothing to show!! Try adding some task...";
+document.getElementById("task").innerHTML=("")}
+else{
+    document.getElementById("task1").innerHTML="Your tasks are as follows:";
+    document.getElementById("task").innerHTML="";
+    var ul = document.getElementById("task");
+    for(var i=0;i<List.length;i++){
+        var li = document.createElement("li");
+        li.textContent=List[i];
+        ul.appendChild(li);
+    }
+}
+}
+}
+function exit(){
+List.splice(0,List.length);
+document.getElementById("delinput").value="";
+document.getElementById("task1").innerHTML="List Resetted!! Now you can make a new one...";
+document.getElementById("task").innerHTML=("")
+}
+</script>
